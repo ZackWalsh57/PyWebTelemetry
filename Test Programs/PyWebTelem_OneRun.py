@@ -19,7 +19,6 @@
 import os
 import csv
 from collections import defaultdict
-import sys
 import time
 
 #Lock onto the file we are going to be reading from. Allow the user to specify file location
