@@ -37,6 +37,9 @@ Each folder is pretty self explanatory but to avoid confusion, I'll explain what
 ### Test Programs
 - This is basically a working directory.  Any code that needed to be written and tested before being added into a final script can be found here. A lot of that code is heavily commented and really *REALLY* messy.  
 
+### One Click EXE Files
+- Empty for now.  When version 1.0 is releases.
+
 ---
 
 ## Program Operation
