@@ -1,2 +1,2 @@
 # One Click EXE Files
-When Version 1.0 is released, the compiled EXE files for each version can be found here.  Any dependencies will be declared for each version. 
+When major changes are made to the code, a new EXE is released. All EXEs will be considered STABLE and Public Release. The compiled EXE files for each version can be found here.  Any dependencies will be declared for each version.

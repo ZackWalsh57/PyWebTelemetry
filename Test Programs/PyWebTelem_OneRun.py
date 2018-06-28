@@ -13,7 +13,6 @@
 #os - Used for checking file existance.
 #csv - Used for reading the .hml file
 #defaultdict - Used to get coll names
-#sys - used for the deleting and checking for files
 #time - Used to log time and pause running.
 
 import os
