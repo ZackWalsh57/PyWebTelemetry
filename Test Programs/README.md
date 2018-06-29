@@ -18,6 +18,7 @@ Any programs that are used for testing single run logging are found here.
     - CPU Idle Temp (Estimated. Found by checking usage)
 - This data will eventually be stored in a list as well and then sent over to the web server and displayed.
 - This program is going to run concurrently alongside the data logging program.
+- NOTE: The average feature does not work right now.
 
 ### PyWebTelem_DataTransmission.py (Work in progress)
 - NOTE: This is a WIP and the file may be empty in the repo. 

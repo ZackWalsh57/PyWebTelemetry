@@ -1,4 +1,4 @@
-#This program is going to simply find averages and estimate values when the machine is at an idle.
+#This program is going to simply find averages (BUG: Broken) and estimate values when the machine is at an idle.
 
 #Setup imports and explain why.
 import os #Path searches

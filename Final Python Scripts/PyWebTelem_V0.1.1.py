@@ -1,9 +1,13 @@
-#PyWebTelem V0.1
+#PyWebTelem V0.1.1
 #Zack Walsh
 #Python 2.7
 #Built for use with Windows 10 and 8.1 using MSI AFB or RTSS
 
-#NOTE: I added the error exception.  Just makes more sense.
+#Changes:
+#Kept error exceptions
+#Added in mins and maxes.
+#Cleaned up the method of recording and printing. 
+#Lists are no longer zipped.
 
 #Here_We_Go.gif has started:
 
@@ -15,7 +19,7 @@ import time #Delays to stop the program from pulling stale/invalid values.
 
 #Welcome Screen and splash
 print("======================================================================================\n")
-print("\t\t\t      PyWebTelemetry V0.1\n\t      This program NEEDS MSI Afterburner installed to work!")
+print("\t\t\t    PyWebTelemetry V0.1.1\n\t      This program NEEDS MSI Afterburner installed to work!")
 print("\t       RivaTuner MIGHT also work, but I have not tested it")
 print("\nStart Afterburner, right click the graphs on the bottom and click \"Log to file\".")
 print("Once started, enter the log file location INCLUDING the file name.")
@@ -91,8 +95,14 @@ except WindowsError:
 print("\n======================================================================================\n")
 print("Printing measurements to console now....")
 
+MIN_USAGE_TEMP = [0] * len(DATA_FIELDS)     #Minimum recorded number for the usage and temps
+MAX_USAGE_TEMP = [0] * len(DATA_FIELDS)     #Maximum recorded number for the usage and temps
+MIN_USAGE_TEMP = [1000000] * len(DATA_FIELDS) #Make the min list an impossible value so it can be
+#written to.
+
 while True: #Loop for as long as we want.
     time.sleep(1) #Let AFB rewrite the log.
+    INDEX = 0
     try: #Added the error exception anyway. Didn't want to but it's just smarter.
         with open(PATH_LOCATION) as RAW_MEAS_BLOCKS: #open the log and read it.
             VALUE_READER = csv.reader(RAW_MEAS_BLOCKS)
@@ -102,13 +112,35 @@ while True: #Loop for as long as we want.
             VALUES_RAW = RAW_ROW[2:] #Read all values after second collumn
             VALUES_CLEAN = [] #Place to store whitespace less values.
             for RAW_VALUES in VALUES_RAW:
-                STRIPPED = RAW_VALUES.strip()
+                STRIPPED_STRING = RAW_VALUES.strip()
+                STRIPPED = float(STRIPPED_STRING)
                 VALUES_CLEAN.append(STRIPPED)
 
+        #Log the mins and maxes here....
+        if INDEX < len(VALUES_CLEAN): #Check the index value
+            for VALUE in VALUES_CLEAN: #for every value in the cleaned list
+                if float(VALUE) > float(MAX_USAGE_TEMP[INDEX]):
+                    MAX_USAGE_TEMP[INDEX] = VALUE 
+                    #Decide if we want a new max value
+                INDEX += 1 #Add to index (itteration counter)
+            INDEX = 0 #Once we logged the maxes, make the counter 0
+            
+            for VALUE in VALUES_CLEAN: #Repeat like above but for mins.
+                #Since we have a list of massive values, we can just compare and add.
+                if float(VALUE) < float(MIN_USAGE_TEMP[INDEX]):
+                    MIN_USAGE_TEMP[INDEX] = VALUE
+                INDEX += 1
+            INDEX = 0 #Reset index.
+
         #Zip the two lists together for easier reading.
-        PAIRED_DATA = zip(DATA_FIELDS, VALUES_CLEAN)
-        print(PAIRED_DATA)
+        #Print it all out now....
+        print("\nRead Values:")
+        print "CURRENT  |   ", VALUES_CLEAN
+        print "LOWEST   |   ", MIN_USAGE_TEMP
+        print "HIGHEST  |   ", MAX_USAGE_TEMP
+        print "AVERAGE  |    [DISABLED]"
         os.remove(PATH_LOCATION) #Delete the log and repeat.
+
     except: #Exception is just going to tell the user there's an issue.  No point in breaking.
-        print("PULLED TOO FAST RETRYING")
+        print("\nPULLED TOO FAST RETRYING")
         continue

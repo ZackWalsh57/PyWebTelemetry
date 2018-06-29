@@ -1,6 +1,6 @@
 # PyWebTelemetry - The AIO PC Remote Monitor
 
-**PLEASE NOTE THE WEB INTERFACE IS NOT YET COMPLETE. IT WILL BE DONE SHORTLY. I DO NOT KNOW WHEN, BUT SOON**
+**PLEASE NOTE THE WEB INTERFACE IS NOT YET COMPLETE. IT WILL BE DONE SHORTLY. I DO NOT KNOW WHEN, BUT SOON. WHEN IT IS DONE, THAT WILL BE VERSION 1.0**
 
 **ALSO NOTE THIS IS WRITTEN IN PYTHON 2.7. I AM AWARE THAT IT IS BEING PHASED OUT AND WILL BE CONVERTING TO PYTHON 3.X IN THE NEAR FUTURE.**
 
@@ -22,6 +22,7 @@
     - [Common Issues and Solutions](#common-issues-and-solutions)
     - [Changelog and Upcoming Features](#changelog-and-upcoming-features)
         - [Version 0.1](#version-01)
+        - [Version 0.1.1](#version-011)
         - [Version 0.2](#version-02)
 
 <!-- /TOC -->
@@ -106,7 +107,12 @@ This section will explain what's in store for this program and act as a log for 
 ### Version 0.1
 - Release Date: 6/27/2018
 - EXE: Not built for this release (Too many potential changes in code)
-- This is the most basic form of the program itself.  Features logging and reading from the log files.  Does not transmit data for wireless monitoring yet. Also contains the error exception for when data is requested too quickly.  
+- This is the most basic form of the program itself.  Features logging and reading from the log files.  Does not transmit data for wireless monitoring yet. Also contains the error exception for when data is requested too quickly. 
+
+### Version 0.1.1
+- Release Date: 6/28/2018
+- EXE: Not built for this release (No major features added, still WIP.)
+- Version 0.1.1 adds in a feature which calculates the mins and maxes of the recorded values. It also cleans up the methods of reading the log and saving values. In V0.1, the values were saved in a list as a type String, but now I'm using floats so I can compare each pulled value.
 
 ### Version 0.2
 - Release Date: TBA
