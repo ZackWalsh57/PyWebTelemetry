@@ -41,3 +41,6 @@
 
 - The problem I ran into this way is that the average calculated is not real unless we can summate every single previous run.
 - This is because for each average, the next added value is weighted less and less, but summing it all up would reach system maxsize of a 32 bit os really fast.  So I'm not sure how to make this work. 
+
+# Solutions
+- As of now (6/28/2018), there is no solution for this bug and it doesn't seem like there will be one for some time.  Will update when progress is made.

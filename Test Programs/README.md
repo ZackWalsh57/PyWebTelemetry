@@ -20,6 +20,23 @@ Any programs that are used for testing single run logging are found here.
 - This program is going to run concurrently alongside the data logging program.
 - NOTE: The average feature does not work right now.
 
+### PyWebTelem_IdleTemps.py (Work in progress)
+- NOTE: THIS IS A WIP
+- Program used to show how we can grab idle temps from the log file.
+- We create a dynamic dictionary file that can be read and use it as a lookup for other info.
+- The idea here is that we can scan the dictionary, see where the identifier of X usage is, and then from there we can lookup where the identifier of X usage is.  Given those two indicies, we can pull a usage value and a temperature.  
+- Using a threshold value of usage, we can set this up to only read the temp of X component when the usage of X component is less than a set number.
+- In other words:
+    - Find out what's being monitored.
+    - Create a list of pairs as INDEX, VALUE_RECORDED
+    - Read the items in each index of the dictionary/list
+    - When we come across the one that has the word usage in it we look at it's index.
+    - If we see GPU also, we use 30 for a threshold. If we see CPU we use 15.
+    - We then read the value of VALUES_CLEAN at the index marked by the dictionary and compare it to the threshold.
+        - If we're under the threshold, we look at the dictionary again and find the temperature index of the component who's usage we're checking. 
+        - That temp is now the idle temp.
+        - If we're over the threshold, we ignore it. 
+
 ### PyWebTelem_DataTransmission.py (Work in progress)
 - NOTE: This is a WIP and the file may be empty in the repo. 
 - Program used to demonstrate data sending and receiving over using python. 
